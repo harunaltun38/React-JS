@@ -14,7 +14,7 @@ state={
     {
       id:2,
       title:'Arbeiten',
-      completed:false
+      completed:true
     },
     {
       id:3,
