@@ -2,23 +2,24 @@ import React, { Component } from "react";
 import Todos from "./components/Todos";
 import Header from "./components/layout/Header";
 import AddTodo from "./AddTodo";
+import { v4 as uuidv4 } from 'uuid';
 import "./App.css";
 
-class App extends Component {
+class App extends Component {   
   state = {
     todos: [
       {
-        id: 1,
+        id:  uuidv4(),
         title: "Work Out",
         completed: false,
       },
       {
-        id: 2,
+        id:  uuidv4(),
         title: "Arbeiten",
         completed: true,
       },
       {
-        id: 3,
+        id:  uuidv4(),
         title: "Kino besuchen",
         completed: false,
       },
@@ -45,12 +46,22 @@ class App extends Component {
     });
   };
 
+  //Add Todo
+  addTodo = (title) => {
+    const newTodo = {
+      id: uuidv4(),
+      title: title,
+      completed:false
+    };
+    this.setState({ todos: [...this.state.todos, newTodo] });
+  };
+
   render() {
     return (
       <div className="App">
         <div className="container">
           <Header />
-          <AddTodo />
+          <AddTodo addTodo={this.addTodo} />
           <Todos
             todos={this.state.todos}
             markComplete={this.markComplete}
